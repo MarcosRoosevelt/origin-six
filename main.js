@@ -17,3 +17,14 @@ for (const link of links) {
   })  
 }
 
+// scroll header
+const header = document.querySelector("#header")
+const navHeight = header.offsetHeight // deslocamento da altura
+
+window.addEventListener('scroll', function() {
+  if(window.scrollY >= navHeight) {
+    header.classList.add('scroll')
+  } else {
+    header.classList.remove('scroll')
+  }
+})
