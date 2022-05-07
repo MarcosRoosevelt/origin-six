@@ -1,4 +1,5 @@
 // icons
+
 const nav = document.querySelector("#header nav");
 const toggle = document.querySelectorAll("nav .toggle");
 
@@ -9,19 +10,21 @@ for (const element of toggle) { //searching elements
 }
 
 //choosing any option in the menu
+
 const links = document.querySelectorAll('nav ul li a')
 
 for (const link of links) {
   link.addEventListener('click', function() {
     nav.classList.remove('show') //removing the class show
-  })  
+  })
 }
 
 // scroll header
 
+const header = document.querySelector("#header")
+const navHeight = header.offsetHeight // height shift
+
 function changeHeaderWhenScroll() {
-  const header = document.querySelector("#header")
-  const navHeight = header.offsetHeight // deslocamento da altura
 
   if(window.scrollY >= navHeight) {
     header.classList.add('scroll')
@@ -74,8 +77,8 @@ scrollReveal.reveal(
 
 // back to top button
 
+const backToTopButton = document.querySelector('.back-to-top')
 function backToTop() {
-  const backToTopButton = document.querySelector('.back-to-top')
 
   if (window.scrollY >= 700) {
     backToTopButton.classList.add('show')
@@ -84,9 +87,38 @@ function backToTop() {
   }
 }
 
+//active menu according to page section
+
+const sections = document.querySelectorAll('main section[id]')
+function activateMenuAtCurrentSection () {
+  
+  const checkpoint = window.pageYOffset + (window.innerHeight / 8) * 4 //deslocamento Y da página 
+
+  for ( const section of sections ) {
+    const sectionTop = section.offsetTop
+    const sectionHeight = section.offsetHeight
+    const sectionID = section.getAttribute('id')
+
+    const checkpointStart = checkpoint >= sectionTop
+    const checkpointEnd = checkpoint <= sectionTop + sectionHeight
+
+    if (checkpointStart && checkpointEnd) {
+      document
+      .querySelector('nav ul li a[href*=' + sectionID + ']')
+      .classList.add('active')
+    } else {
+      document
+      .querySelector('nav ul li a[href*=' + sectionID + ']')
+      .classList.remove('active')
+    }
+
+  }
+
+}
 
 // Scroll
 window.addEventListener('scroll', function() {
   changeHeaderWhenScroll()
   backToTop()
+  activateMenuAtCurrentSection ()
 })

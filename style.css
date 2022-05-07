@@ -183,7 +183,8 @@ nav ul li a {
   position: relative;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li a.active {
   color: var(--base-color);
 }
 
@@ -202,7 +203,8 @@ nav ul li a::after {
   transition: width 0.3s;
 }
 
-nav ul li a:hover::after {
+nav ul li a:hover::after,
+nav ul li a.active::after {
   width: 100%;
 }
 
@@ -433,8 +435,8 @@ nav.show div.icon-close {
 #testimonials cite img {
   width: 2rem;
   height: 2rem;
-  object-fit: cover; /*encaixa a imagem cobrindo o espaço em volta*/
-  clip-path: circle(); /*círculo na imagem*/ /*clip-path - cria uma máscara de uma certa forma*/
+  object-fit: cover; /*fits the image covering the space around it*/
+  clip-path: circle(); /*circle in the image*/ /*clip-path : creates a mask of a certain shape*/
 
   margin-right: .5rem;
 }
@@ -596,6 +598,14 @@ footer .social a:hover {
 
   nav .menu ul li a.title {
     font: 400 1rem var(--body-font);
+
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav .menu ul li a.title.active {
+    font-weight: bold;
+
+    -webkit-font-smoothing: auto;
   }
 
   nav .icon-menu {
