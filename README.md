@@ -1,2 +1,2 @@
 # origin-six
-Under development
+Learning HTML, CSS and JS
